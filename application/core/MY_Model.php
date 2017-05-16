@@ -355,7 +355,7 @@ class MY_Model extends CI_Model {
 
 			foreach($result as $row){
 
-				$this->delete($row->entry);
+				$this->delete($row->id);
 			}
 		}
 
@@ -370,7 +370,7 @@ class MY_Model extends CI_Model {
 
 			foreach($result as $row){
 
-				$this->delete($row->entry);
+				$this->delete($row->id);
 			}
 		}
 

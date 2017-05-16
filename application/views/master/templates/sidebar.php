@@ -33,7 +33,7 @@
                         <a class="pull-left toggle_fullscreen" data-target="#" data-rel="tooltip" data-placement="top" data-original-title="Fullscreen">
                         <i class="icon-size-fullscreen"></i>
                         </a>
-                        <a class="pull-left btn-effect" href="salir" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
+                        <a class="pull-left btn-effect" href="control/salir" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
                         <i class="icon-power"></i>
 
                         </a>

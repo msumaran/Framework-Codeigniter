@@ -20,6 +20,30 @@ class Control extends CI_Controller {
 	 */
 	public function login()
 	{
-		$this->load->view('welcome_message');
+		$this->load->model('m_control');
+		$this->m_control->wc_logout();
+		$this->load->view('master/login');
+	}
+	public function auth(){
+		$this->load->model('m_control');
+		$data = json_decode(file_get_contents('php://input'), true);
+		
+		$ar = array();
+		if (  $this->m_control->wc_Auth( $data['email'], $data['passwd']) ){
+			$ar['login'] = true; 
+
+		}else{
+			$ar['login'] = false;
+			$ar['error'] = 'Usuario y contraseña incorrecto';
+
+		}
+
+		echo json_encode($ar);
+	}
+
+	public function salir(){
+
+		$this->m_control->wc_logout();
+		redirect('login','refresh');
 	}
 }

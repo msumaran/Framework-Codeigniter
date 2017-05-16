@@ -25,7 +25,7 @@
                                         <a data-target="#"  ng-click="createheader('clientes')"><i class="icon-user"></i><span>Agregar prospecto</span></a>
                                     </li>
                                     <li>
-                                        <a data-target="salir" href="salir"><i class="icon-logout"></i><span>Logout</span></a>
+                                        <a data-target="salir" href="control/salir"><i class="icon-logout"></i><span>Logout</span></a>
                                     </li>
                                 </ul>
                             </li>

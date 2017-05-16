@@ -32,6 +32,8 @@ class M_control extends CI_Model{
 
 			$ar = unserialize($cookie);
 
+
+
 			if($ar['id']){
 				$id = intval($ar['id']);
 				$query= $this->db->query("SELECT * FROM " . $this->users_table . " where id = " . $id);
@@ -57,7 +59,7 @@ class M_control extends CI_Model{
 
 		$passwd = $this->encode_pass($correo, trim($passwd));
 
-		if(!$dni and !$passwd) {
+		if(!$correo and !$passwd) {
 
 			return false;
 		}
@@ -71,7 +73,7 @@ class M_control extends CI_Model{
             return false;
 		}
 
-		if (($row->entry > 0) and ($row->password == $passwd)) {
+		if (($row->id > 0) and ($row->passwd == $passwd)) {
 	
 
             $this->wc_login($row);
@@ -83,34 +85,29 @@ class M_control extends CI_Model{
 
 	public function wc_login($row){
 
-		$this->entry 			 = $row->entry;
+		$this->id 			 = $row->id;
 		$this->nombres 			 = $row->nombres;
-
-		$this->dni 			     = $row->dni;
-		$this->email 			 = $row->email;
-		$this->tipo_producto     = $row->tipo_producto;
-
+		$this->correo 			 = $row->correo;
 		$this->level 			 = $row->level;
-
 		$this->logeado 		     = true;
 
 		return true;
 	}
 
 	public function register($data){
-		$dni = $data->dni;
+		$correo = $data->correo;
 		$password = $data->password;
 
-		unset($data->dni);
+		unset($data->correo);
 
-		$data->password = $this->encode_pass($dni, $data->password);
+		$data->password = $this->encode_pass($correo, $data->password);
 		$data->registered = 1;
 		$data->status = 1;
 
-		$this->db->where("dni", $dni);
+		$this->db->where("correo", $correo);
 
 		if($this->db->update("users", $data)){
-			return $this->wc_Auth($dni, $password, true);
+			return $this->wc_Auth($correo, $password, true);
 		}
 
 		return false;
@@ -135,35 +132,32 @@ class M_control extends CI_Model{
 				$time = 0;
 			}
 
-			$ar['entry'] = $this->entry;
-			$ar['key'] = md5($this->llave.$this->entry);
+			$ar['id'] = $this->id;
+			$ar['key'] = md5($this->llave.$this->id);
 			$ar['now'] = $this->now;
 			$strCookie = serialize($ar);
 			break;
 		}
-		if($level == 4){
+		
+		return setcookie( $this->cookie_name ,$strCookie,$time,"/");
 
-			return setcookie( $this->cookie_admin ,$strCookie,$time,"/");
-		}else{
-			return setcookie( $this->cookie_name ,$strCookie,$time,"/");
 
-		}
 
 	}
 
 	
 	/*****************************/
 
-	private function encode_pass($dni, $pass){
+	private function encode_pass($correo, $pass){
 
-        return md5($dni . "::" . $pass);
+        return md5($correo . "::" . $pass);
 	}
 
-	public function reset_pass($dni){
+	public function reset_pass($correo){
 
-		$query = $this->db->select("entry, nombres, email")
+		$query = $this->db->select("id, nombres, correo")
 							->from($this->users_table)
-							->where("dni", $dni)
+							->where("correo", $correo)
 							->get();
 
 		$row = $query->row();
@@ -187,7 +181,7 @@ class M_control extends CI_Model{
 			$data = new stdClass();
 
 			$data->nombres = $row->nombres;
-			$data->email = $row->email;
+			$data->correo = $row->email;
 			$data->token = $token;
 
 			return $data;
@@ -198,7 +192,7 @@ class M_control extends CI_Model{
 
 	public function do_reset($user, $pass){
 
-		$user->password = $this->encode_pass($user->dni, $pass);
+		$user->password = $this->encode_pass($user->correo, $pass);
 		$user->registered = 1;
 
 		$this->db->where("entry", $user->entry);

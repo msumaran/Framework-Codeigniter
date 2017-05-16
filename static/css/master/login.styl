@@ -1,0 +1,72 @@
+.account
+    background: #1f3649
+    background: -moz-radial-gradient(center, ellipse cover, #1f3649 0%, #17253d 44%, #040d11 100%)
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #1f3649), color-stop(44%, #17253d), color-stop(100%, #040d11))
+    background: -webkit-radial-gradient(center, ellipse cover, #1f3649 0%, #17253d 44%, #040d11 100%)
+    background: -o-radial-gradient(center, ellipse cover, #1f3649 0%, #17253d 44%, #040d11 100%)
+    background: -ms-radial-gradient(center, ellipse cover, #1f3649 0%, #17253d 44%, #040d11 100%)
+    background: radial-gradient(ellipse at center, #1f3649 0%, #17253d 44%, #040d11 100%)
+    .account-wall
+        margin-top: 160px
+        padding: 20px 20px 10px
+        position: relative
+        text-align center
+
+.user-img
+    color: #ffffff
+    font-size: 80px
+
+
+.account-copyright
+    bottom: 10px
+    color: #BDBDBD
+    font-family: 'Open Sans'
+    left: 0
+    position: absolute
+    right: 0
+    text-align: center
+
+.account
+    &.no-social
+        .social-btn
+            display: none
+    &.boxed
+        a
+            color: #838383
+            &:hover
+                color: #4D4D4D
+        .account-wall
+            background-color: #ffffff
+            opacity: 1
+        .form-signup
+            .terms
+                color: #454545
+    &.no-user-image
+        .user-img
+            display: none
+    &.separate-inputs
+        .form-signin
+            input[type="password"]
+                border-top-left-radius: 2px
+                border-top-right-radius: 2px
+            input[type="text"]
+                border-bottom-left-radius: 2px
+                border-bottom-right-radius: 2px
+                margin-bottom: 8px
+        .form-signup
+            input[type="password"]
+                border-top-left-radius: 2px
+                border-top-right-radius: 2px
+            input[type="text"]
+                border-bottom-left-radius: 2px
+                border-bottom-right-radius: 2px
+                margin-bottom: 8px
+            input[type="email"]
+                border-bottom-left-radius: 2px
+                border-bottom-right-radius: 2px
+                margin-bottom: 8px
+    &.no-terms
+        .form-signup
+            .terms
+                display: none
+

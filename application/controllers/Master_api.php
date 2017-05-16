@@ -18,7 +18,7 @@ class Master_api extends Admin_controller {
 	public function session(){
 		$this->load->model($this->path_admin.'m_control');
 
-		echo json_encode($this->m_login);
+		echo json_encode($this->m_control);
 
 	}
 

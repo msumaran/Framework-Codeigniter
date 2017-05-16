@@ -90,7 +90,7 @@ class Admin_controller extends MY_Controller {
 	private function redirect(){
 
 		if( !$this->m_control->logeado ){
-			//redirect(base_url() . "control?backto=".current_url());
+			redirect(base_url() . "login?backto=".current_url());
 		}
 	}
 
