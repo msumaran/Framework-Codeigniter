@@ -1,0 +1,110 @@
+'use strict';
+/******************************************************************** 
+* 
+* exploracion CTRL
+*
+********************************************************************/
+angular.module('newApp').controller('clientesCtrl',
+    ['$scope', 'applicationService', '$http', '$location','$route', '$window',
+    function ($scope, applicationService, $http, $location, $route, $window) {
+        
+        // Pagination
+        $scope.PerPage = 25;
+        $scope.page = 1;
+        $scope.total = 0;
+        // Fin Pagination
+        $scope.q = '';
+        $scope.row = {};
+        $scope.model = 'clientes';
+        $scope.get = '';
+        
+        $scope.name_controller = 'Exploración';
+        angular.$locationat = $location; 
+        angular.$routeat = $route;
+
+        // Otros models
+        $scope.id = 0;
+        $scope.tipo_inbound ='exploración';
+
+        
+        $scope.create = function(){
+          $scope.id = '';
+          applicationService.create_app( $scope );     
+        };
+
+        $scope.pagination = {
+            current: 1
+        };
+
+        $scope.search = function(){
+            $scope.page = 1;
+            $scope.get = '?q='+$scope.q;
+            $scope.fetchContent();
+        };
+
+        $scope.pageChanged = function(newPage) {
+            $scope.page = newPage;
+            $scope.fetchContent();
+        };
+         $scope.editar = function(id){
+          $scope.id = id;
+          $http.get('master_api/get_id/'+$scope.model+'/'+$scope.id).then(function(result){
+                 $scope.row = result.data;
+                 applicationService.create_app( $scope);
+            });
+
+         
+        };
+        $scope.borrar = function(id){
+            $scope.id = id;
+            if (confirm("Seguro?")) {
+                $http.get('master_api/del/'+$scope.model+'/'+$scope.id).then(function(result){
+                    $scope.fetchContent();
+                });
+            }
+        };
+        $scope.fetchContent = function() {
+            $http.get('master_api/get/'+$scope.model+'/'+$scope.page+$scope.get).then(function(result){
+              var resultado = []; // my object
+              if( result.data.data != undefined ){
+                $scope.total = result.data.total;
+
+                $.each(result.data.data, function (key, data) {
+                   
+                    resultado.push(data);
+                });
+                
+              }
+              $scope.result = resultado;
+            });
+        };
+
+        // Nuevas funcionalidades
+        $scope.vercliente = function(id){
+
+            angular.$locationat.path('/verclientes/'+id).search('id='+id);
+            angular.$routeat.reload();
+        };
+        $scope.contacto = function(id){
+            $scope.id = id;
+            if (confirm("Seguro de poner a contacto?")) {
+                $http.get('master_api/contacto/'+$scope.id).then(function(result){
+                    $scope.fetchContent();
+                });
+            }
+        };
+        $scope.descargar = function(){
+             $window.open('master_api/get_exploracion/0/true'+$scope.get, '_blank');
+        };
+        $scope.cambiar = function(id){
+            $("#modal_estado_prospectos").modal('show');
+            $scope.id = id;
+        };
+       
+
+
+        //Fin nuevas funcionalidades
+        
+        $scope.fetchContent();
+}]);
+

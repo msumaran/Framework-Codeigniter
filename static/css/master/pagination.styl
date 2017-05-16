@@ -1,0 +1,72 @@
+.pagination
+    & > li
+        & > a
+            -moz-transition: all 0.4s ease
+            -o-transition: all 0.4s ease
+            -webkit-transition: all 0.4s ease
+            background: none
+            border: none
+            color: #636e7b
+
+
+ul.pagination > .disabled > span,
+ul.pagination > .disabled > a,
+ul.pagination > .disabled > a i,
+ul.pagination > .disabled > a:hover,
+ul.pagination > .disabled > a:focus
+    opacity: 0.5 !important
+
+.pagination > li:last-child > a,
+.pagination > li:last-child > span,
+.pagination > li:first-child > a,
+.pagination > li:first-child > span
+    padding: 6px 6px 4px 6px !important
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus
+    background: none
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus
+    background: none
+    border: none
+    color: #3C3C3C
+.pagination
+    li
+        display: inline-block
+        float: left
+        margin-left: 5px
+        &:first-child
+            margin-left: 0
+        a
+            color: #A2A2A2
+            font-size: 12px
+    & > li
+        &:first-child
+            & > span
+                border-bottom-left-radius: 3px
+                border-top-left-radius: 3px
+            & > a
+                border-bottom-left-radius: 3px
+                border-top-left-radius: 3px
+        & > span
+            -moz-transition: all 0.4s ease
+            -o-transition: all 0.4s ease
+            -webkit-transition: all 0.4s ease
+            background: none
+            border: none
+            color: #636e7b
+        &:last-child
+            & > span
+                border-bottom-right-radius: 3px
+                border-top-right-radius: 3px
+            & > a
+            
+                border-bottom-right-radius: 3px
+                border-top-right-radius: 3px

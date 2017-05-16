@@ -1,0 +1,33 @@
+{
+  "name": "animate.stylus",
+  "version": "0.1.5",
+  "homepage": "https://github.com/Makvagabo/animate.stylus",
+  "authors": [
+    "Makvagabo <lefizarlok@gmail.com>"
+  ],
+  "description": "A Stylus library of Dan Eden's Animate.css",
+  "main": "animate.stylus",
+  "keywords": [
+    "animate.stylus",
+    "animate.css",
+    "stylus",
+    "css",
+    "css3-animations"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "_release": "0.1.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.5",
+    "commit": "cebcf63a1d0645d93f01e307d12d4ddf474f5ee4"
+  },
+  "_source": "https://github.com/Makvagabo/animate.stylus.git",
+  "_target": "^0.1.5",
+  "_originalSource": "animate.stylus",
+  "_direct": true
+}
