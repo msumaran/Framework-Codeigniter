@@ -160,20 +160,25 @@ class Master_api extends Admin_controller {
 			echo json_encode($json);
 
     }
-    public function upload_archivo(){
+    public function upload_image(){
 		$this->load->helper('string');
 		$mes = date('m');
 		$dia = date('d');
+		$path = $this->input->get('path');
 		
-		$config['upload_path'] = './_files/'.$mes.'/'.$dia.'/';
+		$config['upload_path'] = './_files/'.$path.'/'.$mes.'/'.$dia.'/';
 		if (!is_dir($config['upload_path'])) {
-			if (!is_dir('./_files/'.$mes.'/')) {
-				mkdir('./_files/'.$mes.'/',0777);
+			if (!is_dir('./_files/'.$path)) {
+				mkdir('./_files/'.$path,0777);
+			}
+
+			if (!is_dir('./_files/'.$path.'/'.$mes.'/')) {
+				mkdir('./_files/'.$path.'/'.$mes.'/',0777);
 			}
     		mkdir($config['upload_path'],0777);
 		}
 		$this->ruta = $config['upload_path'];
-		$config['allowed_types'] = 'pdf|doc|docx|xls|xlsx|gif|jpg|png|psd|ai|zip|rar|csv|ppt|pptx|mp3|sql';
+		$config['allowed_types'] = 'gif|jpg|png';
 		$config['file_name'] = $mes.$dia.random_string('alnum', 4);
 		$this->load->library('upload', $config);
 		if ( $this->upload->do_upload('Filedata') ){

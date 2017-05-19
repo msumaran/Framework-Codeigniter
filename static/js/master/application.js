@@ -388,16 +388,10 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
 
     /**** PANEL ACTIONS ****/
     /* Create Portlets Controls automatically: reload, fullscreen, toggle, remove, popout */
-    function handlePanelControls() {
-        $('.panel-controls').each(function () {
-            var controls_html = '<div class="control-btn">' + '<a href="#" class="panel-reload hidden"><i class="icon-reload"></i></a>' + '<a href="#" class="panel-maximize hidden"><i class="icon-size-fullscreen"></i></a>' + '<a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>' + '<a href="#" class="panel-close"><i class="icon-trash"></i></a>' + '</div>';
-            $(this).append(controls_html);
-        });
-    }
+ 
 
     function handlePanelAction() {
 
-        handlePanelControls();
         // Remove Panel
         $(".panel-header .panel-close").click(function (event) {
             event.preventDefault();
@@ -451,11 +445,6 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
         $('.panel-header .panel-reload').click(function (event) {
             event.preventDefault();
             event.stopPropagation();
-            var el = $(this).parents(".panel:first");
-            blockUI(el);
-            window.setTimeout(function () {
-                unblockUI(el);
-            }, 1800);
         });
         // Maximize Panel Dimension
         $(".panel-header .panel-maximize").click(function (event) {
@@ -470,7 +459,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
             } else {
                 $(window).trigger('resize');
                 panel.parent().height('');
-                pluginsService.sortablePortlets();
+                //pluginsService.sortablePortlets();
             }
             $("i", this).toggleClass("icon-size-fullscreen").toggleClass("icon-size-actual");
             panel.find(".panel-toggle").toggleClass("nevershow");

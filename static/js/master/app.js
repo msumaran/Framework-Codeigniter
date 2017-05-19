@@ -39,30 +39,48 @@ var MakeApp = angular
 *
 ********************/
 
-/***
-Image Upload
-***/
 
-MakeApp.directive('imageUploadifive', ['$rootScope',
-    function($rootScope) {
+
+
+MakeApp.directive('date', ['$rootScope', '$http',
+    function($http, $rootScope) {
+        return {
+            restrict: 'AE',
+            require: 'ngModel',
+            scope: {
+                ngModel: '='
+            },
+            template: '<select class="form-control" ng-model="ngModel">' +
+                    '<option ng-value="{{key}}" ng-repeat="(key, value) in items">{{value}}</option></select>',
+
+            controller: ['$scope','$http','$attrs', function (scope,$http,attrs) {
+                
+                $http({method: 'GET', url:'master_api/get_all/'+attrs.model }).then(function (result) {
+                    scope.items = {};
+                    scope.model_scope = attrs.ngModel;
+                    angular.forEach(result.data.data, function(row) {
+                           
+                            scope.items[ row[attrs.id] ] = row[attrs.value];
+
+                    }); 
+                    console.log(scope.items);
+                });
+
+            }]
+        };
+    }
+]);
+
+
+
+MakeApp.directive('editor', ['$rootScope', '$http',
+    function($http, $rootScope) {
         return {
             restrict: 'A',
             require: 'ngModel',
             link: function(scope, element, attrs, ngModel) {
-                var value = "archivo";
-
-                $(element).uploadifive({
-                        'auto'             : true,
-                        'checkScript'      : 'master_api/upload_archivo',
-                        'uploadScript'     : 'master_api/upload_archivo',
-                        'onUploadComplete' : function(file, data) { 
-                            data = JSON.parse(data);
-                            console.log(ngModel);
-                            ngModel.$setViewValue(data.file_name);
-                            ngModel.$render();
-                            console.log(ngModel);
-                        }
-                    });
+                
+                $(element).summernote(); 
 
             }
         };
@@ -70,27 +88,27 @@ MakeApp.directive('imageUploadifive', ['$rootScope',
 ]);
 
 
-/***
-Time Picker
-***/
 
-MakeApp.directive('imageUploadifive', ['$rootScope',
+MakeApp.directive('imageupload', ['$rootScope',
     function($rootScope) {
         return {
             restrict: 'A',
             require: 'ngModel',
+
             link: function(scope, element, attrs, ngModel) {
                 var value = "archivo";
 
                 console.log(value);
                     $(element).uploadifive({
                         'auto'             : true,
-                        'checkScript'      : 'master_api/upload_archivo',
-                        'uploadScript'     : 'master_api/upload_archivo',
+                        'uploadScript'     : 'master_api/upload_image?path='+attrs.path,
+                        'fileType'     : ['image/jpeg','image/png','image/gif','image/jpg'],
                         'onUploadComplete' : function(file, data) { 
                             data = JSON.parse(data);
                             console.log(data);
-                            console.log(value);
+                            ngModel.$setViewValue(data.file_name);
+                            ngModel.$render();
+                            console.log(ngModel);
                         }
                     });
 

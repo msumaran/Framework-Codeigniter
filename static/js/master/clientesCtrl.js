@@ -25,7 +25,6 @@ angular.module('newApp').controller('clientesCtrl',
         // Otros models
         $scope.id = 0;
         $scope.tipo_inbound ='exploración';
-
         
         $scope.create = function(){
           $scope.id = '';
@@ -48,6 +47,7 @@ angular.module('newApp').controller('clientesCtrl',
         };
          $scope.editar = function(id){
           $scope.id = id;
+          $scope.row = {};
           $http.get('master_api/get_id/'+$scope.model+'/'+$scope.id).then(function(result){
                  $scope.row = result.data;
                  applicationService.create_app( $scope);
@@ -64,6 +64,7 @@ angular.module('newApp').controller('clientesCtrl',
             }
         };
         $scope.fetchContent = function() {
+            $scope.result = [];
             $http.get('master_api/get/'+$scope.model+'/'+$scope.page+$scope.get).then(function(result){
               var resultado = []; // my object
               if( result.data.data != undefined ){

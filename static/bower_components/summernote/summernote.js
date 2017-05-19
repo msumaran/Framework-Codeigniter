@@ -3508,6 +3508,7 @@
             .on('change', function () {
               deferred.resolve(this.files || this.value);
               $imageDialog.modal('hide');
+              console.log('hide');
             })
             .val('')
           );
@@ -3517,6 +3518,7 @@
 
             deferred.resolve($imageUrl.val());
             $imageDialog.modal('hide');
+            console.log('hide');
           });
 
           $imageUrl.on('keyup paste', function (event) {

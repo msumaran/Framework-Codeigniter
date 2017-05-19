@@ -9,9 +9,11 @@
         <title>Panchi2</title>
         <base href="<?php echo base_url(); ?>" />
         <link href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        
         <link href="static/css/master/master.css?v=<?php echo $v ?>" rel="stylesheet">
-        <!-- END LAYOUT STYLE -->
+        <!-- START TOOLS -->
+        <link href="static/bower_components/summernote/summernote.min.css" rel="stylesheet">
+        <link href="static/bower_components/angular-material/angular-material.min.css" rel="stylesheet">
+        <!-- END TOOLS -->
         <script src="static/bower_components/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body ng-app="newApp" class="fixed-topbar fixed-sidebar theme-sdtl color-default" ng-controller="mainCtrl">

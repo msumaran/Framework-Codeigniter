@@ -46,16 +46,13 @@
         <script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
         <script src="static/bower_components/angular-route/angular-route.min.js"></script>
         <script src="static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        
         <script src="static/bower_components/moment/min/moment.min.js"></script>
         <script src="static/bower_components/moment/min/locales.min.js"></script>
-
-
-        <!--  Plugins para los formularios -->
         <script src="static/bower_components/angularUtils-pagination/dirPagination.js"></script>
         <script src="static/bower_components/angular-messages/angular-messages.min.js"></script>
         <script src="static/bower_components/select2/select2.min.js"></script>
-        <script src="static/bower_components/uploadifive/jquery.uploadifive.min.js"></script>
-
+      
         
         <?php 
             foreach ($js as $ret) {
@@ -63,5 +60,10 @@
             }
 
         ?>
+         
+        <!-- START TOOLS -->
+         <script src="static/bower_components/uploadifive/jquery.uploadifive.min.js"></script>
+        <script src="static/bower_components/summernote/summernote.min.js"></script>
+        <!-- END TOOLS -->
     </body>
 </html>

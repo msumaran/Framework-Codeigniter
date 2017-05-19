@@ -17,13 +17,22 @@
         <div class="col-lg-12 portlets">
             <div class="panel">
                 <div class="panel-header panel-controls">
+
                     <h3><i class="fa fa-table"></i> <strong>Lista de</strong> {{name_controller}} <small> ({{total}})</small></h3>
+
+                   
+                        <div class="control-btn">
+                           <a href="#" ng-click="fetchContent()" class="panel-reload hidden"><i class="icon-reload"></i></a>
+                           <a href="#" class="panel-maximize hidden"><i class="icon-size-fullscreen"></i></a>
+                           <a href="#" class="panel-toggle closed"><i class="fa fa-angle-down"></i></a>
+                        </div>
                 </div>
                 <div class="panel-content">
                     <!--<p>Lista de eventos</p>-->
                     <div class="m-b-20">
                         <div class="btn-group">
                               <button class="btn btn-sm btn-dark" ng-click="create()"><i class="fa fa-plus"></i> Agregar</button>
+                              
                         </div>
                     </div>
 
@@ -70,7 +79,7 @@
 
 
 <!-- Aca va el form -->
-<div id="modalprompt{{model}}" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true"' class="modal fade">
+<div id="modalprompt{{model}}" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true"' class="modal fade full">
 
     <div class="modal-dialog">
     <div class="modal-content">
@@ -85,6 +94,7 @@
                         <label for="name" class="col-sm-2 control-label">Nombre</label>
                         <div class="col-sm-9">
                             <input type="text" name="name" ng-model="row.name" required class="form-control" /> 
+                            <md-datepicker ng-model="row.myDate" md-placeholder="Enter date"></md-datepicker>
                             <div ng-messages="frm.name.$error"  ng-if='frm.name.$dirty' ng-cloak>
                                 <div ng-message="required">Falta este campo</div>
                             </div>
@@ -101,6 +111,13 @@
                         </div>
                     </div> <!--  fin form group -->
 
+                    <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Descp</label>
+                        <div class="col-sm-9">
+                            <textarea name="descp" ng-model="row.descp" editor></textarea>
+                        </div>
+                    </div> <!--  fin form group -->
+
 
                     <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Giro</label>
@@ -113,8 +130,7 @@
                     <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Archivo</label>
                         <div class="col-sm-9">
-                            <input id="archivo" ng-model="row.archivo" type="file" image-uploadifive name="archivo" />
-                            <div id="queue_archivo"></div>
+                            <input id="archivo" data-path="clientes" ng-model="row.archivo" type="file" imageUpload name="archivo" />
                         </div>
                     </div> <!--  fin form group -->
 
@@ -128,8 +144,10 @@
                 </div><!--  fin form -->
         </div> <!--  fin modal body -->
     </div>
-</divw>
+</div>
+</div>
 
 
+  
     <?php $this->load->view('master/templates/footer_int'); ?>
 </div>
