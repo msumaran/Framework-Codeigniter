@@ -13,6 +13,10 @@
         <!-- START TOOLS -->
         <link href="static/bower_components/summernote/summernote.min.css" rel="stylesheet">
         <link href="static/bower_components/angular-material/angular-material.min.css" rel="stylesheet">
+
+        <link href="static/bower_components/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+        <link href="static/bower_components/ui-cropper/compile/minified/ui-cropper.css" rel="stylesheet">
+
         <!-- END TOOLS -->
         <script src="static/bower_components/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>

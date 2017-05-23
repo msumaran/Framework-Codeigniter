@@ -193,4 +193,37 @@ class Master_api extends Admin_controller {
 			echo 'No subio el archivo';
 		}
 	}
+	public function upload_file(){
+		$this->load->helper('string');
+		$mes = date('m');
+		$dia = date('d');
+		$path = $this->input->get('path');
+		
+		$config['upload_path'] = './_files/'.$path.'/'.$mes.'/'.$dia.'/';
+		if (!is_dir($config['upload_path'])) {
+			if (!is_dir('./_files/'.$path)) {
+				mkdir('./_files/'.$path,0777);
+			}
+
+			if (!is_dir('./_files/'.$path.'/'.$mes.'/')) {
+				mkdir('./_files/'.$path.'/'.$mes.'/',0777);
+			}
+    		mkdir($config['upload_path'],0777);
+		}
+		$this->ruta = $config['upload_path'];
+		$config['allowed_types'] = 'doc|docx|csv|xls|xlsx|pdf';
+		$config['file_name'] = $mes.$dia.random_string('alnum', 4);
+		$this->load->library('upload', $config);
+		if ( $this->upload->do_upload('Filedata') ){
+			$datos = $this->upload->data();
+
+			$ruta = base_url();
+			$datos['url'] = img_ver($ruta,$datos['file_name']);
+			echo json_encode($datos);
+		}else{
+			var_dump($_FILES);
+			echo $this->upload->display_errors();
+			echo 'No subio el archivo';
+		}
+	}
 }

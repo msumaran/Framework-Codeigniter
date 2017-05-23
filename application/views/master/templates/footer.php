@@ -17,7 +17,7 @@
                     </a>
                     </div>
                 </div>
-
+                
                 <div class="dummy-column user-column">
                     <h2>Contactos</h2>
                     <div id="search_contactos" ng-repeat="val in search_result_contactos">
@@ -52,6 +52,10 @@
         <script src="static/bower_components/angularUtils-pagination/dirPagination.js"></script>
         <script src="static/bower_components/angular-messages/angular-messages.min.js"></script>
         <script src="static/bower_components/select2/select2.min.js"></script>
+        <script src="static/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="static/bower_components/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+
+        <script src="static/bower_components/ui-cropper/compile/minified/ui-cropper.js"></script>
       
         
         <?php 

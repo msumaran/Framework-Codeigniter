@@ -91,6 +91,28 @@
                 <div class="form">
                 <form class="form-horizontal" ng-submit="submit_app()" name="frm">
                     <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Seleccionar imagen</label>
+                        <div class="col-sm-9">
+                            <input type="file" id="fileInput" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-9">
+                            <div class="cropArea">
+                                <ui-cropper area-type="rectangle" aspect-ratio="1.7" result-image-size='{w: 340,h: 200}' init-max-area="true" image="myImage" result-image="row.imagen"></ui-cropper>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Cropped Image:</label>
+                        <div class="col-sm-9">
+                            <img ng-src="{{row.imagen}}" />
+                          
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Nombre</label>
                         <div class="col-sm-9">
                             <input type="text" name="name" ng-model="row.name" required class="form-control" /> 
@@ -104,7 +126,7 @@
                     <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Web</label>
                         <div class="col-sm-9">
-                            <input type="text" name="web" ng-model="row.web" required class="form-control" />
+                            <date ng-model="row.fecha"></date>
                             <div ng-messages="frm.web.$error"  ng-if='frm.web.$dirty' ng-cloak>
                                 <div ng-message="required">Falta este campo</div>
                             </div>
@@ -147,7 +169,14 @@
 </div>
 </div>
 
-
+  <style>
+    .cropArea {
+      background: #E4E4E4;
+      overflow: hidden;
+      width:500px;
+      height:350px;
+    }
+  </style>
   
     <?php $this->load->view('master/templates/footer_int'); ?>
 </div>

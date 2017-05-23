@@ -317,14 +317,22 @@ class MY_Model extends CI_Model {
 			unset($data['id']);
 		}
 
+
         if($id){
             // update
+
+            if(  method_exists($this, 'prepare') ) $data = $this->prepare($data);
+
             $this->db->where("id", $id);
             $this->db->update($this->main_table, $data);
             $this->db->stop_cache();
             return $id;
         }else{
             //insert
+            
+            if(  method_exists($this, 'prepare') ) $data = $this->prepare($data);
+
+
             $this->db->insert($this->main_table, $data);
             $this->db->stop_cache();
             return $this->db->insert_id();

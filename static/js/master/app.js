@@ -12,6 +12,7 @@ var MakeApp = angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
+    'uiCropper',
     'ngRoute',
     'ngMessages',
     'ngSanitize',
@@ -39,9 +40,6 @@ var MakeApp = angular
 *
 ********************/
 
-
-
-
 MakeApp.directive('date', ['$rootScope', '$http',
     function($http, $rootScope) {
         return {
@@ -50,28 +48,20 @@ MakeApp.directive('date', ['$rootScope', '$http',
             scope: {
                 ngModel: '='
             },
-            template: '<select class="form-control" ng-model="ngModel">' +
-                    '<option ng-value="{{key}}" ng-repeat="(key, value) in items">{{value}}</option></select>',
+            template: '<input type="text" name="fecha" ng-model="ngModel" required class="form-control input-sm" />',
+            link: function(scope, element, attrs, ngModel) {
+               
+                    scope.name = attrs.ngModel;
+                    $("input[name='fecha']").datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: 'es'
+                    });
 
-            controller: ['$scope','$http','$attrs', function (scope,$http,attrs) {
-                
-                $http({method: 'GET', url:'master_api/get_all/'+attrs.model }).then(function (result) {
-                    scope.items = {};
-                    scope.model_scope = attrs.ngModel;
-                    angular.forEach(result.data.data, function(row) {
-                           
-                            scope.items[ row[attrs.id] ] = row[attrs.value];
 
-                    }); 
-                    console.log(scope.items);
-                });
-
-            }]
+            }
         };
     }
 ]);
-
-
 
 MakeApp.directive('editor', ['$rootScope', '$http',
     function($http, $rootScope) {
@@ -80,7 +70,25 @@ MakeApp.directive('editor', ['$rootScope', '$http',
             require: 'ngModel',
             link: function(scope, element, attrs, ngModel) {
                 
-                $(element).summernote(); 
+                $(element).summernote({
+                    onImageUpload: function(files, editor, welEditable) {
+                             var data = new FormData();
+                             data.append("Filedata", files[0]);
+                             $.ajax({
+                                    data: data,
+                                    type: "POST",
+                                    url: 'master_api/upload_image',
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    dataType: "json",
+                                    success: function (json) {
+                                        console.log(json);
+                                        editor.insertImage(welEditable, json.url);
+                                    }
+                            });
+                    }
+                }); 
 
             }
         };
@@ -88,6 +96,34 @@ MakeApp.directive('editor', ['$rootScope', '$http',
 ]);
 
 
+MakeApp.directive('fileupload', ['$rootScope',
+    function($rootScope) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+
+            link: function(scope, element, attrs, ngModel) {
+                var value = "archivo";
+
+                console.log(value);
+                    $(element).uploadifive({
+                        'auto'             : true,
+                        'uploadScript'     : 'master_api/upload_file?path='+attrs.path,
+                        'fileType'     : ['csv','pdf','xlsx','docx','xls','doc'],
+                        'onUploadComplete' : function(file, data) { 
+                            data = JSON.parse(data);
+                            console.log(data);
+                            ngModel.$setViewValue(data.file_name);
+                            ngModel.$render();
+                            console.log(ngModel);
+                        }
+                    });
+
+
+            }
+        };
+    }
+]);
 
 MakeApp.directive('imageupload', ['$rootScope',
     function($rootScope) {

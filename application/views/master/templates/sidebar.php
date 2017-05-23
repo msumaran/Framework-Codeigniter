@@ -7,7 +7,7 @@
                 </div>
                 <div class="sidebar-inner">
                     <div class="sidebar-top">
-                        <form action="search-result.html" method="post" class="searchform" id="search-results">
+                        <form action="" method="post" class="searchform" id="search-results">
                             <input type="text" class="form-control" name="keyword" placeholder="Buscar...">
                         </form>
                         <div class="userlogged clearfix">

@@ -975,9 +975,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
 
         $scope.submit_app = function(){
             
-            console.log($scope.row);
-            return;
-            $http.post('admin_api/save/' + $scope.model + '/' + $scope.get, $scope.row).then(function(result){
+            $http.post('master_api/save/' + $scope.model + '/' + $scope.get, $scope.row).then(function(result){
                 if ( $scope.form_ok !== undefined ){
                     $scope.form_ok();
                 }else{

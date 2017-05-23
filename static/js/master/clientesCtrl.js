@@ -25,6 +25,24 @@ angular.module('newApp').controller('clientesCtrl',
         // Otros models
         $scope.id = 0;
         $scope.tipo_inbound ='exploración';
+
+        // Crop Image
+        $scope.myImage='';
+        $scope.myCroppedImage='';
+
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.myImage=evt.target.result;
+            });
+          };
+          reader.readAsDataURL(file);
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+        
         
         $scope.create = function(){
           $scope.id = '';
@@ -107,5 +125,11 @@ angular.module('newApp').controller('clientesCtrl',
         //Fin nuevas funcionalidades
         
         $scope.fetchContent();
+        $scope.$on('$viewContentLoaded', function() {
+            $("input[name='web']").datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'es'
+            });
+        });
 }]);
 

@@ -14,7 +14,7 @@ class M_control extends CI_Model{
 	// Otors
 
 	var $cookie_name = 'test_cookie';
-	var $users_table = "usuarios";
+	var $users_table = "users";
 
 	public function __construct(){
 		parent::__construct();
