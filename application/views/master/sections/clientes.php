@@ -136,7 +136,7 @@
                     <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Descp</label>
                         <div class="col-sm-9">
-                            <textarea name="descp" ng-model="row.descp" editor></textarea>
+                            <div ng-model="row.descp" editor></div>
                         </div>
                     </div> <!--  fin form group -->
 

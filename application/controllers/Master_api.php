@@ -87,8 +87,7 @@ class Master_api extends Admin_controller {
 		$data = json_decode(file_get_contents('php://input'), true);
 
 
-		var_dump($data);
-		die;
+		
 		if(!empty($id) ) $data['id'] = $id;
 		
 		$insert_id = $this->m_model->save($data);

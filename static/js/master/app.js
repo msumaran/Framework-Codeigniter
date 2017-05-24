@@ -69,8 +69,15 @@ MakeApp.directive('editor', ['$rootScope', '$http',
             restrict: 'A',
             require: 'ngModel',
             link: function(scope, element, attrs, ngModel) {
-                
+                ngModel.$render = function () {
+                    if( ngModel.$viewValue !== undefined ){
+                        $(element).summernote('restoreRange');
+                        $(element).summernote('focus');
+                        $(element).summernote('code',ngModel.$viewValue);
+                    }
+                };
                 $(element).summernote({
+                    dialogsInBody: true,
                     onImageUpload: function(files, editor, welEditable) {
                              var data = new FormData();
                              data.append("Filedata", files[0]);
@@ -89,7 +96,9 @@ MakeApp.directive('editor', ['$rootScope', '$http',
                             });
                     }
                 }); 
-
+                $(element).on('summernote.change', function(we, contents, $editable) {
+                    ngModel.$setViewValue(contents);
+                });
             }
         };
     }

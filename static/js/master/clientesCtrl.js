@@ -45,6 +45,7 @@ angular.module('newApp').controller('clientesCtrl',
         
         
         $scope.create = function(){
+          $scope.row = {};
           $scope.id = '';
           applicationService.create_app( $scope );     
         };

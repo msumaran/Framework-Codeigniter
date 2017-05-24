@@ -67,7 +67,7 @@
          
         <!-- START TOOLS -->
          <script src="static/bower_components/uploadifive/jquery.uploadifive.min.js"></script>
-        <script src="static/bower_components/summernote/summernote.min.js"></script>
+        <script src="static/bower_components/summernote/summernote.js"></script>
         <!-- END TOOLS -->
     </body>
 </html>

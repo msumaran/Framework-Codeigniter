@@ -64,9 +64,11 @@
         <script src="static/bower_components/angularUtils-pagination/dirPagination.js"></script>
         <script src="static/bower_components/angular-messages/angular-messages.min.js"></script>
         <script src="static/bower_components/select2/select2.min.js"></script>
-        <script src="static/bower_components/uploadifive/jquery.uploadifive.min.js"></script>
-
         
+         <script src="static/bower_components/uploadifive/jquery.uploadifive.min.js"></script>
+        <script src="static/bower_components/summernote/summernote.js"></script>
+
+        <script src="static/bower_components/ui-cropper/compile/minified/ui-cropper.js"></script>
         <script src="static/js/master/app.js"></script>
         <script src="static/js/master/loginCtrl.js"></script>
     </body>
