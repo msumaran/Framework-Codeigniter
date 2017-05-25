@@ -116,7 +116,13 @@ class MY_Model extends CI_Model {
 		$this->db->select($this->main_table.".*");
 		$this->db->from($this->main_table);
 		$this->pagination_total_rows = $this->db->count_all_results();
-		
+		if (substr($this->order_by, 0, 1) === "-") {
+
+			$this->db->order_by($this->main_table.'.'.substr($this->order_by, 1), "DESC");
+		} else {
+
+			$this->db->order_by($this->main_table.'.'.$this->order_by, "ASC");
+		}
 		$this->db->limit($this->result_limit, $offset);
 		$query =  $this->db->get();
 
