@@ -5,10 +5,10 @@
         <div class="breadcrumb-wrapper">
             <ol class="breadcrumb">
                 <li>
-                    <a href="admin/#">Home</a>
+                    <a href="master/#">Home</a>
                 </li>
                 <li>
-                    <a href="admin/#{{model}}">{{name_controller}}</a>
+                    <a href="master/#{{model}}">{{name_controller}}</a>
                 </li>
             </ol>
         </div>
