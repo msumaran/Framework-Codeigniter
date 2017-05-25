@@ -44,7 +44,7 @@
                     </div>
 
 
-                    <table class="table table-hover dataTable" id="table-prospectos">
+                    <table class="table table-hover dataTable">
                         <thead>
                             <tr>
                                 <th>Name</th>

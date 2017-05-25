@@ -54,7 +54,8 @@
         <script src="static/bower_components/select2/select2.min.js"></script>
         <script src="static/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
         <script src="static/bower_components/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
-
+        <script src="static/bower_components/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        
         <script src="static/bower_components/ui-cropper/compile/minified/ui-cropper.js"></script>
       
         

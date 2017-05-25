@@ -74,6 +74,8 @@ MakeApp.directive('editor', ['$rootScope', '$http',
                         $(element).summernote('restoreRange');
                         $(element).summernote('focus');
                         $(element).summernote('code',ngModel.$viewValue);
+                    }else{
+                        $(element).summernote('code','');
                     }
                 };
                 $(element).summernote({

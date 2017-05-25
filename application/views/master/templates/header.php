@@ -13,7 +13,8 @@
         <!-- START TOOLS -->
         <link href="static/bower_components/summernote/summernote.min.css" rel="stylesheet">
         <link href="static/bower_components/angular-material/angular-material.min.css" rel="stylesheet">
-
+        
+        <link href="static/bower_components/mcustom-scrollbar/mcustom_scrollbar.min.css" rel="stylesheet">
         <link href="static/bower_components/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
         <link href="static/bower_components/ui-cropper/compile/minified/ui-cropper.css" rel="stylesheet">
 

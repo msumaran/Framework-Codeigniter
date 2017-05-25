@@ -952,6 +952,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
         handleSidebarHide();
         handlePanelAction();
         scrollTop();
+        createSideScroll();
         sidebarBehaviour();
  
         setTimeout(function () {
