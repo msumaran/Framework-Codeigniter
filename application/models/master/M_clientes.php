@@ -9,8 +9,8 @@ class M_clientes extends MY_Model
 	{
 		parent::__construct();
 	}
-	public function prepare($data=array()){
-		var_dump($data);
+	public function join($data=array()){
+		
 		return $data;
 	}
 	

@@ -2021,8 +2021,10 @@
     },
 
     hideDialog: function ($dialog) {
-      $dialog.modal('hide');
 
+        $dialog.on('hidden.bs.modal', function (e) {
+           $("body").addClass("modal-open");
+        })
     },
 
     createLayout: function ($note, options) {
@@ -6007,7 +6009,11 @@
               text: $linkText.val(),
               isNewWindow: $openInNewWindow.is(':checked')
             });
-            self.$dialog.modal('hide');
+             //self.$dialog.modal('hide');
+             self.$dialog.on('hidden.bs.modal', function (e) {
+                
+                $("body").addClass("modal-open");
+            });
           });
         });
 
@@ -6016,7 +6022,7 @@
           $linkText.off('input paste keypress');
           $linkUrl.off('input paste keypress');
           $linkBtn.off('click');
-
+          $("body").addClass("modal-open");
           if (deferred.state() === 'pending') {
             deferred.reject();
           }
@@ -6434,7 +6440,7 @@
         ui.onDialogHidden(self.$dialog, function () {
           $videoUrl.off('input');
           $videoBtn.off('click');
-
+          $("body").addClass("modal-open");
           if (deferred.state() === 'pending') {
             deferred.reject();
           }

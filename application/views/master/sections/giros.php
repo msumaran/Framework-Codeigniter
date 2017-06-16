@@ -80,6 +80,7 @@
 
 <!-- Aca va el form -->
 <div id="modalprompt{{model}}" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true"' class="modal fade full">
+
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header"> 
