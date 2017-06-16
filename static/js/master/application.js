@@ -20,6 +20,7 @@ var headerRightWidth = $('.header-right').width();
 var start = delta = end = 0;
 
 //$.cookie.defaults.path = '/';
+
 angular.module('newApp').factory('applicationService', ['$http','$rootScope', function ($http,$scope) {
 
     //$(window).load(function () {
