@@ -31,7 +31,9 @@ angular.module('newApp').controller('mainCtrl', ['$scope', 'applicationService',
         $scope.isActive = function(id) {
             return id === $scope.id;
         };
-
+        $scope.isActive2 = function(viewLocation) {
+            return viewLocation === $location.path();
+        };
         $scope.menu = function(id){
             $scope.id = id;
             $scope.iframeload = false;

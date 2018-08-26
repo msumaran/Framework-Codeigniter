@@ -39,11 +39,11 @@
                         }else{
                     ?>
                     <ul class="nav nav-sidebar">
-                        <li ng-class="{ active  : isActive('/')}"><a href="master/#/"><i class="icon-home"></i><span>Inicio</span></a></li>
+                        <li ng-class="{ active  : isActive2('/')}"><a href="master/#/"><i class="icon-home"></i><span>Inicio</span></a></li>
                         <?php
 
                             foreach ($menus as $row) {
-                             echo '<li ng-class="{ active  : isActive(\'/'.$row->modulo.'\')}"><a href="master/#/'.$row->modulo.'"><i class="fa '.$row->icono.'"></i><span>'.$row->name.'</span></a></li>';
+                             echo '<li ng-class="{ active  : isActive2(\'/'.$row->modulo.'\')}"><a href="master/#/'.$row->modulo.'"><i class="fa '.$row->icono.'"></i><span>'.$row->name.'</span></a></li>';
                             }
                         ?>
                     </ul>
