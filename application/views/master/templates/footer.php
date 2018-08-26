@@ -57,11 +57,14 @@
         <script src="static/bower_components/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
         
         <script src="static/bower_components/ui-cropper/compile/minified/ui-cropper.js"></script>
-      
+        <script src="static/js/master/app.js?v2"></script>   
         
         <?php 
             foreach ($js as $ret) {
-                echo '<script src="static/js/master/'.$ret.'?v2"></script>';
+                if($ret !== 'app.js'){
+                     echo '<script src="static/js/master/'.$ret.'?v2"></script>';
+                }
+               
             }
 
         ?>

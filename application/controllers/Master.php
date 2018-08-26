@@ -23,6 +23,10 @@ class Master extends Admin_controller {
 
 		$this->load->view('master/home',  $this->salida);
 	}
+	public function loading(){
+
+		echo '<h3 style="font-family: sans-serif;">cargando.....</h3>';
+	}
 	public function dashboard()
 	{
 

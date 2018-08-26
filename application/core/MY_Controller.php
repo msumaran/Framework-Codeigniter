@@ -80,7 +80,17 @@ class Admin_controller extends MY_Controller {
 		
 		$this->load->library('form_builder');
 		$this->db->order_by('orden', 'asc');
-		$this->salida['menus'] = $this->m_menus->get_result_where_all( 'tipo="crm"' );
+
+
+		
+		if($this->m_control->level == 'admin'){
+			$this->salida['menus'] = $this->m_menus->get_result_where_all( 'menus_dashboard.tipo="admin"' );
+
+		}else{
+			$this->salida['menus'] = $this->m_menus->get_result_where_all( 'menus_dashboard.tipo="crm" and menus_dashboard.clientes_id = "'.$this->m_control->clientes_id.'" ' );
+
+		}
+		
 		$this->salida['js'] =  get_filenames('static/js/master');
 		$this->salida['v'] = uniqid();
 

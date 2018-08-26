@@ -25,13 +25,13 @@ var MakeApp = angular
                 templateUrl: 'master/dashboard',
                 controller: 'dashboardCtrl'
             })
-            .when('/clientes', {
-                templateUrl: 'master/sections/clientes',
-                controller: 'clientesCtrl'
+            .when('/modulos', {
+                templateUrl: 'master/sections/modulos',
+                controller: 'modulosCtrl'
             })
-            .when('/giros', {
-                templateUrl: 'static/html/giros.html',
-                controller: 'girosCtrl'
+            .when('/usuarios', {
+                templateUrl: 'master/sections/usuarios',
+                controller: 'usuariosCtrl'
             })
             .otherwise({
                 redirectTo: '/'
@@ -138,7 +138,11 @@ MakeApp.directive('fileupload', ['$rootScope',
         };
     }
 ]);
-
+MakeApp.filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+}]);
 MakeApp.directive('imageupload', ['$rootScope',
     function($rootScope) {
         return {
@@ -165,6 +169,19 @@ MakeApp.directive('imageupload', ['$rootScope',
     }
 ]);
 
+MakeApp.directive('iframeOnload', [function(){
+return {
+    scope: {
+        callBack: '&iframeOnload'
+    },
+    link: function(scope, element, attrs){
+        element.on('load', function(){
+            return scope.callBack();
+        })
+    }
+}}]);
+
+
 MakeApp.directive('combo', ['$rootScope', '$http',
     function($http, $rootScope) {
         return {
@@ -173,7 +190,7 @@ MakeApp.directive('combo', ['$rootScope', '$http',
             scope: {
                 ngModel: '='
             },
-            template: '<select class="form-control" ng-model="ngModel">' +
+            template: '<select class="form-control" id="comboclientes" ng-model="ngModel">' +
                 '<option ng-value="{{key}}" ng-repeat="(key, value) in items">{{value}}</option></select>',
 
             controller: ['$scope', '$http', '$attrs', function(scope, $http, attrs) {

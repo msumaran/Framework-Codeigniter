@@ -1,11 +1,13 @@
-angular.module('newApp').controller('mainCtrl', ['$scope', 'applicationService', '$location',
-    function($scope, applicationService, $location) {
+angular.module('newApp').controller('mainCtrl', ['$scope', 'applicationService', '$location','$http',
+    function($scope, applicationService, $location,$http) {
         $(document).ready(function() {
             applicationService.init();
             //quickViewService.init();
            // builderService.init();
             //pluginsService.init();
         });
+        $scope.id = 0;
+        $scope.iframe = 'master/loading';
         $scope.$on('$viewContentLoaded', function() {
             //pluginsService.init();
             applicationService.customScroll();
@@ -26,8 +28,24 @@ angular.module('newApp').controller('mainCtrl', ['$scope', 'applicationService',
                 $('body').removeClass('dashboard');
             }
         });
-        $scope.isActive = function(viewLocation) {
-            return viewLocation === $location.path();
+        $scope.isActive = function(id) {
+            return id === $scope.id;
         };
+
+        $scope.menu = function(id){
+            $scope.id = id;
+            $scope.iframeload = false;
+            $http.get('master_api/get_id/menus/' + id).then(function(result) {
+                
+                $scope.iframe = result.data.iframe;
+            });
+
+        };
+        $scope.collapsedSidebar = function(){
+
+            applicationService.collapsedSidebar();
+        };
+
+
     }
 ]);

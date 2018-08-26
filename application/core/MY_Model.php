@@ -34,7 +34,7 @@ class MY_Model extends CI_Model {
         }
     }
 
-    private function get_offset($page){
+    public function get_offset($page){
     	return ($page - 1 ) * $this->pagination_perpage;
 
     }
@@ -312,8 +312,8 @@ class MY_Model extends CI_Model {
 	}
 
 	public function save($data){
-		$this->db->flush_cache();
-		$this->db->start_cache();
+
+		
 		$id = false;
 
 		if( isset( $data['id'] ) ){
@@ -322,26 +322,27 @@ class MY_Model extends CI_Model {
 
 			unset($data['id']);
 		}
-
-
+		if(  method_exists($this, 'prepare') ) $data = $this->prepare($data);
+		$this->db->flush_cache();
+		$this->db->start_cache();
         if($id){
             // update
-
-            if(  method_exists($this, 'prepare') ) $data = $this->prepare($data);
-
+           
             $this->db->where("id", $id);
             $this->db->update($this->main_table, $data);
+            if(  method_exists($this, 'on_update') ) $data = $this->on_update($data);
             $this->db->stop_cache();
             return $id;
         }else{
             //insert
-            
-            if(  method_exists($this, 'prepare') ) $data = $this->prepare($data);
-
-
             $this->db->insert($this->main_table, $data);
+
+           
             $this->db->stop_cache();
-            return $this->db->insert_id();
+
+             $id = $this->db->insert_id();
+             if(  method_exists($this, 'on_save') ) $data = $this->on_save($data,$id);
+            return $id;
         }
 	}
 

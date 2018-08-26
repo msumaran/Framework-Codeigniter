@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
                     <div class="account-wall">
-                        <i class="user-img icons-faces-users-03"></i>
+                       <img src="static/img/nativos-iso.svg" alt="" />
                         <form class="form-signin" name="form"  ng-submit="logear()">
                             <label id="error_msg" class="error">{{error}}</div>
                             <div class="append-icon">

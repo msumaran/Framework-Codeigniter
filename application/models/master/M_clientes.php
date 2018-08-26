@@ -13,7 +13,30 @@ class M_clientes extends MY_Model
 		
 		return $data;
 	}
+	public function get_result_all(){
+		$this->db->flush_cache();
+		$this->db->start_cache();
+		
+		$this->db->select($this->main_table.'.name, clientes.id');
 	
+
+		
+
+		if($this->select_only_actives){
+			$this->db->where("activo", "si");
+		}
+		if(  method_exists($this, 'join') ) $this->join();
+
+		$this->db->from($this->main_table);
+		$this->pagination_total_rows = $this->db->count_all_results();
+		$this->db->order_by('clientes.name', 'asc');
+		$this->db->stop_cache();
+		$query = $this->db->get();
+
+
+
+		return $query->result();
+	}
 	
 }
 /* End of file M_slider.php */

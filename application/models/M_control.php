@@ -3,6 +3,7 @@
 class M_control extends CI_Model{
 
 	var $id 			         = null;
+	var $clientes_id = 0; 
 	var $nombres 		 = '';
 	var $email 			         = '';
 	var $registered		         = 0;
@@ -14,7 +15,7 @@ class M_control extends CI_Model{
 	// Otors
 
 	var $cookie_name = 'test_cookie';
-	var $users_table = "usuarios";
+	var $users_table = "users";
 
 	public function __construct(){
 		parent::__construct();
@@ -64,7 +65,7 @@ class M_control extends CI_Model{
 			return false;
 		}
 
-		$query= $this->db->query("SELECT * FROM " . $this->users_table . " where correo='".$correo."' AND activo = 'si'");
+		$query= $this->db->query("SELECT * FROM " . $this->users_table . " where email='".$correo."' AND activo = 'si'");
 
 		$row = $query->row();
 
@@ -77,7 +78,7 @@ class M_control extends CI_Model{
 	
 
             $this->wc_login($row);
-			return $this->set_session_cookie(1, $row->level, $guardar);
+			return $this->set_session_cookie(1, $row->tipo, $guardar);
 		}
 
 		return false;
@@ -86,9 +87,10 @@ class M_control extends CI_Model{
 	public function wc_login($row){
 
 		$this->id 			 = $row->id;
-		$this->nombres 			 = $row->nombres;
-		$this->correo 			 = $row->correo;
-		$this->level 			 = $row->level;
+		$this->nombres 			 = $row->name;
+		$this->correo 			 = $row->email;
+		$this->level 			 = $row->tipo;
+		$this->clientes_id 		= $row->clientes_id;
 		$this->logeado 		     = true;
 
 		return true;
@@ -104,7 +106,7 @@ class M_control extends CI_Model{
 		$data->registered = 1;
 		$data->status = 1;
 
-		$this->db->where("correo", $correo);
+		$this->db->where("email", $correo);
 
 		if($this->db->update("users", $data)){
 			return $this->wc_Auth($correo, $password, true);
@@ -150,14 +152,15 @@ class M_control extends CI_Model{
 
 	private function encode_pass($correo, $pass){
 
-        return md5($correo . "::" . $pass);
+        //return md5($correo . "::" . $pass);
+        return md5($pass);
 	}
 
 	public function reset_pass($correo){
 
-		$query = $this->db->select("id, nombres, correo")
+		$query = $this->db->select("id, nombres, email")
 							->from($this->users_table)
-							->where("correo", $correo)
+							->where("email", $correo)
 							->get();
 
 		$row = $query->row();

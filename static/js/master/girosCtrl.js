@@ -46,7 +46,7 @@ angular.module('newApp').controller('girosCtrl',
         
         $scope.create = function(){
           $scope.row = {};
-          $scope.id = '';
+          $scope.id = 0;
           applicationService.create_app( $scope );     
         };
 

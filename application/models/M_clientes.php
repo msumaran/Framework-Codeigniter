@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class M_menus extends MY_Model
+class M_clientes extends MY_Model
 {
-	public $main_table 		= "menus_dashboard";
+	public $main_table 		= "clientes";
 	public $select_only_actives  = false;
 	public function __construct()
 	{
@@ -10,9 +10,34 @@ class M_menus extends MY_Model
 
 	public function prepare($data){
 		unset($data['cliente']);
-		$data['tipo'] = 'crm';
 		return $data;
 	}
+	public function get_result_all(){
+		$this->db->flush_cache();
+		$this->db->start_cache();
+		
+		$this->db->select($this->main_table.'.name, clientes.id');
+	
+
+		$this->db->where($this->main_table.'.estado', 'Activo');
+
+		if($this->select_only_actives){
+			$this->db->where("activo", "si");
+		}
+		if(  method_exists($this, 'join') ) $this->join();
+
+		$this->db->from($this->main_table);
+		$this->pagination_total_rows = $this->db->count_all_results();
+		$this->db->order_by('name', 'asc');
+		$this->db->stop_cache();
+		$query = $this->db->get();
+
+
+
+		return $query->result();
+	}
+
+
 	public function get_result($page = 1){
 
 		$offset = $this->get_offset($page);
@@ -30,15 +55,9 @@ class M_menus extends MY_Model
 		if(  method_exists($this, 'join') ) $this->join();
 		$this->db->select($this->main_table.".*");
 		$this->db->from($this->main_table);
-		$this->db->where($this->main_table.'.tipo', 'crm');
+		$this->db->where($this->main_table.'.estado', 'Activo');
 		$this->pagination_total_rows = $this->db->count_all_results();
-		if (substr($this->order_by, 0, 1) === "-") {
-
-			$this->db->order_by($this->main_table.'.'.substr($this->order_by, 1), "DESC");
-		} else {
-
-			$this->db->order_by($this->main_table.'.'.$this->order_by, "ASC");
-		}
+		$this->db->order_by('name', 'asc');
 		$this->db->limit($this->result_limit, $offset);
 		$query =  $this->db->get();
 

@@ -96,25 +96,7 @@ class Master_api extends Admin_controller {
 		
 		echo json_encode($result);
 	}
-	public function form($model,$id=0)
-	{
 
-	    	$modelo = 'm_'.$model;
-	    	$this->load->model($this->path_admin.$modelo,'m_model');
-
-
-	    if( !empty($id) ){
-				$this->salida['row'] = $this->m_model->get_id( $id );
-				if ( empty ( $this->salida['row'] ) ){
-					show_404();
-				}
-				$this->salida['editar'] = true;
-			}else{
-				$this->salida['row'] = $this->m_model;
-				$this->salida['editar'] = false;
-			}
-	    $this->load->view('admin/form/'.$model,$this->salida);
-	}
 	public function add_dialog($model,$id=0){
     	$modelo = 'm_'.$model;
     	$this->load->model($this->path_admin.$modelo,'m_model');

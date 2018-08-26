@@ -9,7 +9,7 @@
                 <div class="topbar">
                     <div class="header-left">
                         <div class="topnav">
-                            <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
+                            <a class="menutoggle" href="javascript:;"  ng-click="collapsedSidebar()"><span class="menu__handle"><span>Menu</span></span></a>
                         </div>
                     </div>
                     <div class="header-right">
@@ -17,7 +17,7 @@
                             
                             <li class="dropdown" id="user-header">
                                 <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img src="http://nativosdigitales.pe/dist/images/obj/fran.png" alt="user image">
+                                <i class="icons-faces-users-03 icons"></i>
                                 <span class="username">Hola, <?php echo $this->m_control->nombres; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">

@@ -4,8 +4,8 @@
  * exploracion CTRL
  *
  ********************************************************************/
-angular.module('newApp').controller('clientesCtrl', ['$scope', 'applicationService', '$http', '$location', '$route', '$window',
-    function($scope, applicationService, $http, $location, $route, $window) {
+angular.module('newApp').controller('modulosCtrl', ['$scope', 'applicationService', '$http', '$location', '$route', '$window', '$timeout',
+    function($scope, applicationService, $http, $location, $route, $window, $timeout) {
 
         // Pagination
         $scope.PerPage = 25;
@@ -14,23 +14,25 @@ angular.module('newApp').controller('clientesCtrl', ['$scope', 'applicationServi
         // Fin Pagination
         $scope.q = '';
         $scope.row = {};
-        $scope.model = 'clientes';
+        $scope.model = 'menus';
         $scope.get = '';
 
-        $scope.name_controller = 'Exploración';
+        $scope.name_controller = 'Modulos Cliente';
         angular.$locationat = $location;
         angular.$routeat = $route;
 
         // Otros models
         $scope.id = 0;
-        $scope.tipo_inbound = 'exploración';
-
-
-
+     
 
         $scope.create = function() {
             $scope.row = {};
             $scope.id = 0;
+            $scope.get = '';
+            $("#comboclientes").select2();
+            $timeout(function(){
+                $('#comboclientes').val(0).trigger('change');
+            });
             applicationService.create_app($scope);
         };
 
@@ -53,6 +55,12 @@ angular.module('newApp').controller('clientesCtrl', ['$scope', 'applicationServi
             $scope.row = {};
             $http.get('master_api/get_id/' + $scope.model + '/' + $scope.id).then(function(result) {
                 $scope.row = result.data;
+               //$("#comboclientes").select2().val(result.data.clientes_id).trigger("change");
+       
+               $("#comboclientes").select2();
+               $timeout(function(){
+                $('#comboclientes').val(result.data.clientes_id).trigger('change');
+               });
                 applicationService.create_app($scope);
             });
         };
@@ -72,7 +80,8 @@ angular.module('newApp').controller('clientesCtrl', ['$scope', 'applicationServi
                     $scope.total = result.data.total;
 
                     $.each(result.data.data, function(key, data) {
-
+                        data.orden = parseInt(data.orden);
+                        
                         resultado.push(data);
                     });
 
@@ -103,30 +112,7 @@ angular.module('newApp').controller('clientesCtrl', ['$scope', 'applicationServi
         };
 
 
-        // Crop Image
-        $scope.myImage = '';
-        $scope.myCroppedImage = '';
-
-        var handleFileSelect = function(evt) {
-            var file = evt.currentTarget.files[0];
-            var reader = new FileReader();
-            reader.onload = function(evt) {
-                $scope.$apply(function($scope) {
-                    $scope.myImage = evt.target.result;
-                });
-            };
-            reader.readAsDataURL(file);
-        };
-        angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
-
-        //Fin nuevas funcionalidades
-
         $scope.fetchContent();
-        $scope.$on('$viewContentLoaded', function() {
-            $("input[name='web']").datepicker({
-                format: 'dd/mm/yyyy',
-                language: 'es'
-            });
-        });
+   
     }
 ]);

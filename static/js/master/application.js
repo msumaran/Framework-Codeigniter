@@ -72,6 +72,10 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
         handleboxedLayout();
       
     }
+    
+  
+
+     
 
     /* Toggle RTL */
     function toggleRTL() {
@@ -291,12 +295,18 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
 
     /* Toggle Sidebar Collapsed */
     function collapsedSidebar() {
+
         if ($body.css('position') != 'relative') {
+
+
             if (!$body.hasClass('sidebar-collapsed')) createCollapsedSidebar();
             else removeCollapsedSidebar();
         } else {
-            if ($body.hasClass('sidebar-show')) $body.removeClass('sidebar-show');
-            else $body.addClass('sidebar-show');
+
+            if (!$body.hasClass('sidebar-collapsed')) createCollapsedSidebar();
+            else removeCollapsedSidebar();
+            //if ($body.hasClass('sidebar-show')) $body.removeClass('sidebar-show');
+            //else $body.addClass('sidebar-show');
         }
         handleboxedLayout();
     }
@@ -966,7 +976,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
             keyboard: false
         });
 
-        $(".form select").select2();
+        
 
         $scope.submit_app = function(){
             
@@ -975,6 +985,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
                     $scope.form_ok();
                 }else{
                     $scope.fetchContent();
+                    $("#modalprompt"+$scope.model).modal('hide');
                 }
             }, function errorCallback(response) {
                
