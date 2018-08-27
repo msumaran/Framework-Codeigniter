@@ -8,6 +8,7 @@ class M_control extends CI_Model{
 	var $email 			         = '';
 	var $registered		         = 0;
 	var $level 		             = 0;
+	var $avatar 				 = '';
 	var $is_admin                = false;
 	var $logeado                 = false;
 	var $llave                   = 67657567657;
@@ -91,6 +92,7 @@ class M_control extends CI_Model{
 		$this->correo 			 = $row->email;
 		$this->level 			 = $row->tipo;
 		$this->clientes_id 		= $row->clientes_id;
+		$this->avatar 			= $row->avatar;
 		$this->logeado 		     = true;
 
 		return true;

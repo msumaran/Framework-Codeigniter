@@ -13,7 +13,17 @@
                         </form>
                     -->
                         <div class="userlogged clearfix">
-                            <i class="icons-faces-users-03 icons"></i>
+
+                            <?php
+                            if( !empty($this->m_control->avatar)){
+
+                                echo '<img src="'.img_ver(base_url(),'clientes',$this->m_control->avatar).'" alt="" />'
+                            }else{
+
+                                echo '<i class="icons-faces-users-03 icons"></i>';
+                            }
+                            ?>
+                            
                             <div class="user-details">
                                 <h4><?php echo $this->m_control->nombres; ?></h4>
                                 
