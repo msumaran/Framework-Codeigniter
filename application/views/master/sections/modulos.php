@@ -59,7 +59,7 @@
                         <tr dir-paginate="val in result | itemsPerPage: PerPage" total-items="total" current-page="pagination.current">
                                 <td>{{val.name}}</td> 
                                 <td>{{val.cliente}}</td> 
-                                <td><i class="fa {{val.icono}}"></i></td> 
+                                <td><i class="{{val.icono}}"></i></td> 
                                 <td>{{val.heightiframe}}</td> 
                                 <td>{{val.orden}}</td> 
                                 <td>

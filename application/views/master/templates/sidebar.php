@@ -40,7 +40,7 @@
 
                             foreach ($menus as $row) {
                              echo '<li ng-class="{ active  : isActive('.$row->id.')}">
-                                <a href="javascript:;" ng-click="menu('.$row->id.')" ><i class="fab '.$row->icono.'"></i><span>'.$row->name.'</span></a>
+                                <a href="javascript:;" ng-click="menu('.$row->id.')" ><i class="'.$row->icono.'"></i><span>'.$row->name.'</span></a>
                                 </li>';
                             }
                         ?>
