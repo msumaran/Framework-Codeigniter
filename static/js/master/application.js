@@ -313,8 +313,9 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
 
     function createCollapsedSidebar() {
         $body.addClass('sidebar-collapsed');
-        $('.sidebar').css('width', '').resizable().resizable('destroy');
+        //$('.sidebar').css('width', '').resizable().resizable('destroy');
         $('.nav-sidebar ul').attr('style', '');
+        $('.sidebar').show();
         $(this).addClass('menu-collapsed');
         destroySideScroll();
         $('#switch-sidebar').prop('checked');
@@ -322,7 +323,9 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
     }
 
     function removeCollapsedSidebar() {
+
         $body.removeClass('sidebar-collapsed');
+        $('.sidebar').hide();
         if (!$body.hasClass('submenu-hover'))
             $('.nav-sidebar li.active ul').css({
                 display: 'block'
