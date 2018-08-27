@@ -49,6 +49,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Cliente</th>
+                                <th>Icono</th>
                                 <th>Orden</th>
                                 <th>Opciones</th>
                             </tr>
@@ -57,6 +58,7 @@
                         <tr dir-paginate="val in result | itemsPerPage: PerPage" total-items="total" current-page="pagination.current">
                                 <td>{{val.name}}</td> 
                                 <td>{{val.cliente}}</td> 
+                                <td><i class="fa {{val.icono}}"></i></td> 
                                 <td>{{val.orden}}</td> 
                                 <td>
                                     <a class="btn btn-default btn-xs" ng-click="editar( val.id )" href="javascript:;" >
@@ -127,8 +129,21 @@
                         </div>
                     </div> <!--  fin form group -->
 
+
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Numero</label>
+                        <label for="name" class="col-sm-2 control-label">Icono</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="icono" ng-model="row.icono" required class="form-control" /> 
+                           
+                            <div ng-messages="frm.icono.$error"  ng-if='frm.icono.$dirty' ng-cloak>
+                                <div ng-message="required">Falta este campo</div>
+                            </div>
+                        </div>
+                    </div> <!--  fin form group -->
+
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Orden</label>
                         <div class="col-sm-9">
                             <input type="text" name="orden" ng-model="row.orden" required class="form-control" /> 
                            
