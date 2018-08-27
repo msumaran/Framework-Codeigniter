@@ -23,7 +23,7 @@
                                 <ul class="dropdown-menu">
                                  
                                     <li>
-                                        <a data-target="salir" href="control/salir"><i class="icon-logout"></i><span>Logout</span></a>
+                                        <a data-target="salir" href="control/salir"><i class="icon-logout"></i><span>Salir</span></a>
                                     </li>
                                 </ul>
                             </li>
