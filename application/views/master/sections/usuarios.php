@@ -48,6 +48,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Avatar</th>
                                 <th>Cliente</th>
                                 <th>Email</th>
                                 <th>Opciones</th>
@@ -56,6 +57,7 @@
                         <tbody>
                         <tr dir-paginate="val in result | itemsPerPage: PerPage" total-items="total" current-page="pagination.current">
                                 <td>{{val.name}}</td> 
+                                <td>{{val.avatar}}</td>
                                 <td>{{val.cliente}}</td> 
                                 <td>{{val.email}}</td> 
                                 <td>
@@ -103,6 +105,16 @@
                             </div>
                         </div>
                     </div> <!--  fin form group -->
+
+
+                     <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Avatar</label>
+                        <div class="col-sm-9">
+                            <input id="avatar" data-path="clientes" ng-model="row.avatar" type="file" imageUpload name="avatar" />
+                        </div>
+                    </div> <!--  fin form group -->
+
+
 
 
                     <div class="form-group">

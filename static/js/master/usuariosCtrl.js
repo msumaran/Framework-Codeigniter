@@ -53,6 +53,7 @@ angular.module('newApp').controller('usuariosCtrl', ['$scope', 'applicationServi
         $scope.editar = function(id) {
             $scope.id = id;
             $scope.row = {};
+            $scope.get = '';
             $http.get('master_api/get_id/' + $scope.model + '/' + $scope.id).then(function(result) {
                 $scope.row = result.data;
                //$("#comboclientes").select2().val(result.data.clientes_id).trigger("change");
