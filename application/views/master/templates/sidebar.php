@@ -17,7 +17,7 @@
                             <?php
                             if( !empty($this->m_control->avatar)){
 
-                                echo '<img src="'.img_ver(base_url(),'clientes',$this->m_control->avatar).'" alt="" />';
+                                echo '<img class="img-circle" style="width:50px; float:left;" src="'.img_ver(base_url(),'clientes',$this->m_control->avatar).'" alt="" />';
                             }else{
 
                                 echo '<i class="icons-faces-users-03 icons"></i>';
