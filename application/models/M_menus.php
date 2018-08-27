@@ -10,6 +10,7 @@ class M_menus extends MY_Model
 
 	public function prepare($data){
 		unset($data['cliente']);
+		unset($data['categoria']);
 		$data['tipo'] = 'crm';
 		return $data;
 	}
@@ -47,8 +48,10 @@ class M_menus extends MY_Model
 	}
 	public function join(){
 
-		$this->db->select('clientes.name as cliente');
+		$this->db->select('clientes.name as cliente, categorias_dashboard.name as categoria');
 		$this->db->join('clientes', 'clientes.id = menus_dashboard.clientes_id', 'left');
+		$this->db->join('categorias_dashboard', 'categorias_dashboard.id = menus_dashboard.categorias_id', 'left');
+
 	}
 	
 

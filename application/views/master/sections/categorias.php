@@ -48,10 +48,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Categoría</th>
-                                <th>Cliente</th>
                                 <th>Icono</th>
-                                <th>Height</th>
                                 <th>Orden</th>
                                 <th>Opciones</th>
                             </tr>
@@ -59,10 +56,7 @@
                         <tbody>
                         <tr dir-paginate="val in result | itemsPerPage: PerPage" total-items="total" current-page="pagination.current">
                                 <td>{{val.name}}</td> 
-                                <td>{{val.categoria}}</td> 
-                                <td>{{val.cliente}}</td> 
                                 <td><i class="{{val.icono}}"></i></td> 
-                                <td>{{val.heightiframe}}</td> 
                                 <td>{{val.orden}}</td> 
                                 <td>
                                     <a class="btn btn-default btn-xs" ng-click="editar( val.id )" href="javascript:;" >
@@ -109,52 +103,6 @@
                             </div>
                         </div>
                     </div> <!--  fin form group -->
-
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Cliente</label>
-                        <div class="col-sm-9">
-                            <combo ng-model="row.clientes_id" data-model="clientes" data-value="name" data-id='id'></combo>
-                           
-                          
-                        </div>
-                    </div> <!--  fin form group -->
-
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Categorias</label>
-                        <div class="col-sm-9">
-                            <combo2 ng-model="row.categorias_id" data-model="categorias_dashboard" data-value="name" data-id='id'></combo2>
-                           
-                          
-                        </div>
-                    </div> <!--  fin form group -->
-
-
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Iframe</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="iframe" ng-model="row.iframe" required class="form-control" /> 
-                           
-                            <div ng-messages="frm.iframe.$error"  ng-if='frm.iframe.$dirty' ng-cloak>
-                                <div ng-message="required">Falta este campo</div>
-                            </div>
-                        </div>
-                    </div> <!--  fin form group -->
-
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Height Iframe</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="heightiframe" ng-model="row.heightiframe" required class="form-control" /> 
-                           
-                            <div ng-messages="frm.heightiframe.$error"  ng-if='frm.heightiframe.$dirty' ng-cloak>
-                                <div ng-message="required">Falta este campo</div>
-                            </div>
-                        </div>
-                    </div> <!--  fin form group -->
-
 
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Icono (Font Awesome)</label>

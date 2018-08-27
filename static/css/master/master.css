@@ -14445,7 +14445,7 @@ body:not(.fixed-topbar) .main-content .page-content {
 .sidebar .sidebar-inner .nav-sidebar li i {
   float: left;
   margin-right: 10px;
-  padding-top: 3px;
+  padding-top: 5px;
   text-align: left;
 }
 .sidebar .sidebar-inner .nav-sidebar .nav-parent .children {
@@ -14512,6 +14512,22 @@ body:not(.fixed-topbar) .main-content .page-content {
   color: #fff;
 }
 .sidebar .sidebar-inner .nav-sidebar .children > li .fa {
+  font-size: 12px;
+  margin-right: 5px;
+  opacity: 0.5;
+  text-align: left;
+  vertical-align: baseline;
+  width: auto;
+}
+.sidebar .sidebar-inner .nav-sidebar .children > li .fab {
+  font-size: 12px;
+  margin-right: 5px;
+  opacity: 0.5;
+  text-align: left;
+  vertical-align: baseline;
+  width: auto;
+}
+.sidebar .sidebar-inner .nav-sidebar .children > li .fal {
   font-size: 12px;
   margin-right: 5px;
   opacity: 0.5;
@@ -15156,6 +15172,9 @@ body:not(.sidebar-fixed,
 .nav-sidebar .children > li > a:focus {
   color: #fff;
   text-decoration: none;
+}
+.sidebar .sidebar-inner .nav-sidebar .children > li.active > a {
+  font-weight: bold;
 }
 .sidebar .sidebar-inner .nav-sidebar > li.active > a i,
 .sidebar .sidebar-inner .nav-sidebar > li.active > a span:not(.badge),

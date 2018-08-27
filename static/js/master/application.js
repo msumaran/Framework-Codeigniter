@@ -663,6 +663,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
             });
         else $('.nav-active.active .children').css('display', 'block');
         $('.sidebar').on('click', '.nav-sidebar li.nav-parent > a', function (e) {
+            console.log('hey');
             e.preventDefault();
             if ($('body').hasClass('sidebar-collapsed') && !$('body').hasClass('sidebar-hover')) return;
             if ($('body').hasClass('submenu-hover')) return;
@@ -961,7 +962,8 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
         scrollTop();
         createSideScroll();
         sidebarBehaviour();
- 
+        toggleSidebarMenu();
+    
         setTimeout(function () {
             handleboxedLayout();
         }, 100);
@@ -1008,6 +1010,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
             reposition_topnav();
             if (!$('body').hasClass('fixed-sidebar') && !$('body').hasClass('builder-admin')) sidebarBehaviour();
             handleboxedLayout();
+
             maximizePanel();
         }, 100);
     });

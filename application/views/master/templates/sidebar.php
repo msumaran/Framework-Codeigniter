@@ -43,6 +43,32 @@
                                 <a href="javascript:;" ng-click="menu('.$row->id.')" ><i class="'.$row->icono.'"></i><span>'.$row->name.'</span></a>
                                 </li>';
                             }
+
+
+
+                            foreach ($categorias as $ret) {
+
+                                
+
+
+                             echo '<li class="nav-parent" ng-class="{ active  : isActive('.$ret['row']->id.')}">
+                                <a href="javascript:;"><i class="'.$ret['row']->icono.'"></i><span>'.$ret['row']->name.'</span><span class="fa arrow"></span></a> <ul class="children collapse">';
+                            foreach ($ret['menus'] as $row) {
+
+                                 echo '<li ng-class="{ active  : isActive('.$row->id.')}">
+                                <a href="javascript:;" ng-click="menu('.$row->id.')" ><i class="'.$row->icono.'"></i><span>'.$row->name.'</span></a></li>';
+                            }
+
+                            
+
+
+                               echo '</ul>
+                                </li>';
+                               
+                            }
+
+
+
                         ?>
                     </ul>
                     <?php

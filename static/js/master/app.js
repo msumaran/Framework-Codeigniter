@@ -29,6 +29,10 @@ var MakeApp = angular
                 templateUrl: 'master/sections/modulos',
                 controller: 'modulosCtrl'
             })
+            .when('/categorias', {
+                templateUrl: 'master/sections/categorias',
+                controller: 'categoriasCtrl'
+            })
             .when('/usuarios', {
                 templateUrl: 'master/sections/usuarios',
                 controller: 'usuariosCtrl'
@@ -209,3 +213,35 @@ MakeApp.directive('combo', ['$rootScope', '$http',
         };
     }
 ]);
+
+
+MakeApp.directive('combo2', ['$rootScope', '$http',
+    function($http, $rootScope) {
+        return {
+            restrict: 'AE',
+            require: 'ngModel',
+            scope: {
+                ngModel: '='
+            },
+            template: '<select class="form-control" id="comboclientes" ng-model="ngModel">' +
+                '<option value="">Ninguna</option>' +
+                '<option ng-value="{{key}}" ng-repeat="(key, value) in items">{{value}}</option></select>',
+
+            controller: ['$scope', '$http', '$attrs', function(scope, $http, attrs) {
+
+                $http({ method: 'GET', url: 'master_api/get_all/' + attrs.model }).then(function(result) {
+                    scope.items = {};
+                    scope.model_scope = attrs.ngModel;
+                    angular.forEach(result.data.data, function(row) {
+
+                        scope.items[row[attrs.id]] = row[attrs.value];
+
+                    });
+                });
+
+            }]
+        };
+    }
+]);
+
+

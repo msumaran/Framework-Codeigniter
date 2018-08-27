@@ -76,6 +76,7 @@ class Admin_controller extends MY_Controller {
 		$this->redirect();
 
 		$this->load->model('m_menus');
+		$this->load->model('m_categorias_dashboard');
 		$this->load->model('m_control');
 		
 		$this->load->library('form_builder');
@@ -87,7 +88,28 @@ class Admin_controller extends MY_Controller {
 			$this->salida['menus'] = $this->m_menus->get_result_where_all( 'menus_dashboard.tipo="admin"' );
 
 		}else{
-			$this->salida['menus'] = $this->m_menus->get_result_where_all( 'menus_dashboard.tipo="crm" and menus_dashboard.clientes_id = "'.$this->m_control->clientes_id.'" ' );
+
+			
+
+
+			
+
+			$this->salida['menus'] = $this->m_menus->get_result_where_all( 'menus_dashboard.tipo="crm" and menus_dashboard.clientes_id = "'.$this->m_control->clientes_id.'" and menus_dashboard.categorias_id = 0 ' );
+
+			$result = $this->m_categorias_dashboard->get_result_all();
+			$categorias = array();
+			foreach ($result as $row) {
+
+				$menus = $this->m_menus->get_result_where_all( 'menus_dashboard.tipo="crm" and menus_dashboard.clientes_id = "'.$this->m_control->clientes_id.'" and menus_dashboard.categorias_id = '.$row->id.' ' );
+
+				if(!empty($menus)){
+					$categorias[$row->id]['row'] = $row;
+					$categorias[$row->id]['menus'] = $menus;
+				}
+			}
+			$this->salida['categorias'] = $categorias; 
+
+			
 
 		}
 		
