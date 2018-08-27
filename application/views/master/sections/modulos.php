@@ -50,6 +50,7 @@
                                 <th>Name</th>
                                 <th>Cliente</th>
                                 <th>Icono</th>
+                                <th>Height</th>
                                 <th>Orden</th>
                                 <th>Opciones</th>
                             </tr>
@@ -59,6 +60,7 @@
                                 <td>{{val.name}}</td> 
                                 <td>{{val.cliente}}</td> 
                                 <td><i class="fa {{val.icono}}"></i></td> 
+                                <td>{{val.heightiframe}}</td> 
                                 <td>{{val.orden}}</td> 
                                 <td>
                                     <a class="btn btn-default btn-xs" ng-click="editar( val.id )" href="javascript:;" >
@@ -131,7 +133,19 @@
 
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Icono</label>
+                        <label for="name" class="col-sm-2 control-label">Height Iframe</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="heightiframe" ng-model="row.heightiframe" required class="form-control" /> 
+                           
+                            <div ng-messages="frm.heightiframe.$error"  ng-if='frm.heightiframe.$dirty' ng-cloak>
+                                <div ng-message="required">Falta este campo</div>
+                            </div>
+                        </div>
+                    </div> <!--  fin form group -->
+
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Icono (Font Awesome)</label>
                         <div class="col-sm-9">
                             <input type="text" name="icono" ng-model="row.icono" required class="form-control" /> 
                            

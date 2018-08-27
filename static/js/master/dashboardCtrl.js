@@ -16,6 +16,7 @@ angular.module('newApp')
       });
       $scope.iframeload = true;
       $scope.activeTab = true;
+      
 
         $scope.iframeLoadedCallBack = function(){
             

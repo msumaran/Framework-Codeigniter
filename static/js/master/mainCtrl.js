@@ -8,6 +8,7 @@ angular.module('newApp').controller('mainCtrl', ['$scope', 'applicationService',
         });
         $scope.id = 0;
         $scope.iframe = 'master/loading';
+        $scope.heightiframe = 0;
         $scope.$on('$viewContentLoaded', function() {
             //pluginsService.init();
             applicationService.customScroll();
@@ -38,7 +39,7 @@ angular.module('newApp').controller('mainCtrl', ['$scope', 'applicationService',
             $scope.id = id;
             $scope.iframeload = false;
             $http.get('master_api/get_id/menus/' + id).then(function(result) {
-                
+                $scope.heightiframe = result.data.heightiframe;
                 $scope.iframe = result.data.iframe;
             });
 
