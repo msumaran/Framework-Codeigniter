@@ -17,7 +17,19 @@
                             
                             <li class="dropdown" id="user-header">
                                 <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <i class="icons-faces-users-03 icons"></i>
+                                
+
+                                 <?php
+                            if( !empty($this->m_control->avatar)){
+
+                                echo '<img class="img-circle" style="width:30px; float:left; margin-left:12px;" src="'.img_ver(base_url(),'clientes',$this->m_control->avatar).'" alt="" />';
+                            }else{
+
+                                echo '<i class="icons-faces-users-03 icons"></i>';
+                            }
+                            ?>
+
+
                                 <span class="username">Hola, <?php echo $this->m_control->nombres; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">

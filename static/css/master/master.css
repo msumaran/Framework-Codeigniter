@@ -14294,7 +14294,7 @@ body:not(.fixed-topbar) .main-content .page-content {
   font-size: 30px;
   letter-spacing: -1.5px;
   line-height: 31px;
-  text-align: left;
+  text-align: center;
   margin: 0;
 }
 .sidebar .logopanel h1 a {
