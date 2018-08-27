@@ -325,7 +325,7 @@ angular.module('newApp').factory('applicationService', ['$http','$rootScope', fu
     function removeCollapsedSidebar() {
 
         $body.removeClass('sidebar-collapsed');
-        $('.sidebar').hide();
+        $('.sidebar').show();
         if (!$body.hasClass('submenu-hover'))
             $('.nav-sidebar li.active ul').css({
                 display: 'block'
