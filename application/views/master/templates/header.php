@@ -22,5 +22,8 @@
 
         <!-- END TOOLS -->
         <script src="static/bower_components/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" sizes="32x32" href="static/image/icon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="static/image/icon/favicon-96x96.png">
     </head>
     <body ng-app="newApp" class="fixed-topbar fixed-sidebar theme-sdtl color-default" ng-controller="mainCtrl">
