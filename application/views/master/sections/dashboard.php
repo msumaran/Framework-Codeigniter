@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 portlets">
         		<div class="spinner" ng-show="iframeload"></div>
-                <iframe ng-show="!iframeload" iframe-onload="iframeLoadedCallBack()" width="100%" height="{{heightiframe}}" src="{{iframe  | trusted}}" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe ng-show="!iframeload" iframe-onload="iframeLoadedCallBack()" width="100%" height="{{heightiframe}}" src="{{iframe  | trusted}}" scrolling="no" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
